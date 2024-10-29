@@ -14,7 +14,7 @@ jobs:
       - uses: prefix-dev/setup-pixi@v0.8.1
         with:
           environments: ${{ matrix.environment }}
-      - run: pixi run test
+      - run: pixi run --environment ${{ matrix.environment }} test
 
   publish:
     if: github.ref_type == 'tag'
@@ -30,6 +30,6 @@ jobs:
     steps:
       - uses: actions/checkout@v4
       - uses: prefix-dev/setup-pixi@v0.8.0
-      - run: pixi run build
+      - run: pixi run --environment build build
       - name: Publish to PyPI
         uses: pypa/gh-action-pypi-publish@release/v1
