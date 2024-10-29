@@ -3,7 +3,7 @@ name = "mauro"
 description = "Test package"
 authors = ["Mauro Silberberg <maurosilber@gmail.com>"]
 channels = ["https://fast.prefix.dev/conda-forge"]
-platforms = ["osx-arm64"]
+platforms = ["osx-arm64", "linux-64"]
 
 [tasks]
 
