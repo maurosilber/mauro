@@ -1,0 +1,12 @@
+# Changes here will be overwritten by Copier; NEVER EDIT MANUALLY
+_src_path: python
+github_username: maurosilber
+license: MIT
+min_python_version: '3.13'
+platforms:
+- osx-arm64
+project_description: Test package
+project_name: mauro
+project_slug: mauro
+your_email: maurosilber@gmail.com
+your_name: Mauro Silberberg

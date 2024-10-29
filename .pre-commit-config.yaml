@@ -17,6 +17,8 @@ repos:
     entry: pixi run -e lint trailing-whitespace-fixer
     language: system
     types: [text]
+
+  # pre-commit-hooks
   - id: end-of-file-fixer
     name: Fix end-of-file with pre-commit-hooks
     entry: pixi run -e lint end-of-file-fixer
