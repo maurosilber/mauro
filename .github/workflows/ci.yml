@@ -32,4 +32,4 @@ jobs:
       - uses: prefix-dev/setup-pixi@v0.8.0
       - run: pixi run --environment build build
       - name: Publish to PyPI
-        uses: pixi run --environment build publish
+        uses: pixi run --environment build publish --publish-url https://test.pypi.org/legacy/
