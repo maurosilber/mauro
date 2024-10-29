@@ -1,0 +1,39 @@
+name: Test and release when tagged
+
+on: [push]
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        environment:
+          {%- for minor in range(min_python_version_minor, max_python_version_minor + 1) %}
+          - test-py3{{ minor }}
+          {%- endfor %}
+    steps:
+      - uses: actions/checkout@v4
+      - uses: prefix-dev/setup-pixi@v0.8.1
+        with:
+          {%- raw %}
+          environments: ${{ matrix.environment }}
+          {%- endraw %}
+      - run: pixi run test
+
+  publish:
+    if: github.ref_type == 'tag'
+    needs: test
+
+    runs-on: ubuntu-latest
+    environment:
+      name: pypi
+      url: https://pypi.org/p/{{ project_name }}
+    permissions:
+      id-token: write  # for trusted publising to PyPI
+
+    steps:
+      - uses: actions/checkout@v4
+      - uses: prefix-dev/setup-pixi@v0.8.0
+      - run: pixi run build
+      - name: Publish to PyPI
+        uses: pypa/gh-action-pypi-publish@release/v1
